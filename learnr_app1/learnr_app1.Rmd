@@ -4,11 +4,13 @@ output:
     includes:
       in_header: test1.html
 runtime: shiny_prerendered
+description: "Starwars Example"
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
 library(tidyverse)
 ```
 
