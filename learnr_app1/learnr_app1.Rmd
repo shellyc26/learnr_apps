@@ -4,7 +4,7 @@ output:
     includes:
       in_header: test1.html
 runtime: shiny_prerendered
-description: "Starwars Example"
+description: "Star Wars Example"
 ---
 
 ```{r setup, include=FALSE}
@@ -18,12 +18,17 @@ library(tidyverse)
 
 empire <- starwars
 
-empire <- empire[c(1:5, 10, 13, 14, 19, 21), c(1:3,8,10,11)]
+empire <- empire[c(1:5, 10, 13, 14, 19, 21), c(1:3, 8, 10, 11)]
 empire$species <- factor(empire$species)
 
 ggplot(data = empire, aes(x = mass, y = height)) +
-  geom_point(aes(size = mass, color = species), alpha = .5) +
-  labs(title = "Star Wars Characters", subtitle = "by size") +
+  geom_point(aes(size = mass,
+                 color = species),
+             alpha = .5) +
+  labs(title = "Star Wars Characters",
+       subtitle = "by size",
+       x = "Weight (kg)",
+       y = "Height (cm)") +
   scale_size(guide = "none")
 ```
 
