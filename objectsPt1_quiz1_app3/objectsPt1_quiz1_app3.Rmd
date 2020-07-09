@@ -1,0 +1,26 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Objects Pt 1 Quiz 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE}
+question("Now that you have made your `continents` object, what is the difference between typing `continents` in the console vs. in a script file?",
+         answer("If it's in the console, once you hit 'Enter', the number '7' should immediately print out. If it's in the script, once you hit 'Enter' your cursor will go to the next line, but 7 will not print out until you hit 'Run'", correct = TRUE),
+         answer("If it's in the console, once you hit 'Enter' your cursor will go to the next line, but '7' will not print out until you hit 'Run'. If it's in the script, once you hit 'Enter', the number '7' should immediately print out",
+                message = "Remember, the console is more like your instant messenger and the script is more like an email draft!"),
+         allow_retry = TRUE)
+```
+
+<div data-iframe-height></div>

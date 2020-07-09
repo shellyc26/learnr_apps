@@ -1,0 +1,31 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Objects Pt 1 Quiz 2"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r store, echo=FALSE}
+question("Where is the answer of `chickens + cows` stored?",
+         answer("No where", correct = TRUE),
+         answer("Global Environment",
+                message = "HINT: What is the name of the object that should house this answer?"),
+         answer("Console",
+                message = "The console prints things out and tells you what you've done. Things aren't necessarily 'stored' there, though"),
+         answer("Script",
+                message = "The script is like an email draft. It will send if you hit 'Run'. But things aren't necessarily 'stored' there -- they are created there!"),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+```
+
+<div data-iframe-height></div>
