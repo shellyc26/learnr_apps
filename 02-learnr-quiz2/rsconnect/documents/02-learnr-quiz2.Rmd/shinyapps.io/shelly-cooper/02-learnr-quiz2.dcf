@@ -1,0 +1,12 @@
+name: 02-learnr-quiz2
+title: 02-learnr-quiz2
+username:
+account: shelly-cooper
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2554527
+bundleId: 3373919
+url: https://shelly-cooper.shinyapps.io/02-learnr-quiz2/
+when: 1594334785.59962
+asMultiple: FALSE
+asStatic: FALSE

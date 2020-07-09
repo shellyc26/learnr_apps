@@ -1,0 +1,114 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Vectors & Classes"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+
+```
+
+##### 1. Make the vectors
+
+```{r vecs, exercise = TRUE}
+
+```
+
+<div id="vecs-hint">
+<font size="-1.5">
+**Hint 1:** You do *not* need to print out the objects. Simply make the vectors (If you get that weird "invisible" warning, you can ignore it).
+
+**Hint 2:** Spelling, commas, quotations, and parentheses constitute ~80% of all errors in programming!
+</font>
+</div>
+
+```{r vecs-solution}
+ids <- c("ID1", "ID2", "ID3", "ID4", "ID5")
+state <- c("Missouri", "Iowa", "Missouri", "Idaho", "Maine")
+smoker <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+age <- c(20, 18, 32, 25, 25)
+
+```
+
+```{r vecs-check}
+grade_code()
+```
+
+##### 2. Check the class of each vector
+
+```{r prepare-vecs}
+ids <- c("ID1", "ID2", "ID3", "ID4", "ID5")
+state <- c("Missouri", "Iowa", "Missouri", "Idaho", "Maine")
+smoker <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+age <- c(20, 18, 32, 25, 25)
+
+```
+
+```{r classes, exercise = TRUE, exercise.setup = "prepare-vecs"}
+
+```
+
+<div id="classes-hint">
+<font size="-1.5">
+**Hint:** Check out the "Object Classes" tab from the "2: Objects" slides if you don't know how to check and object's class
+</font>
+</div>
+
+```{r classes-solution}
+class(ids)
+class(state)
+class(smoker)
+class(age)
+
+```
+
+```{r classes-check}
+grade_code()
+```
+
+Our code is correct, but maybe we want `state` to actually be a **factor**. Factors are a special type of character variables that represent categories. To make `state` into a factor, run the following line of code. *Keeping this line of code*, now add a new line to re-check it's class. 
+
+```{r fac, exercise = TRUE, exercise.setup = "prepare-vecs"}
+state <- factor(state)
+```
+
+<div id="fac-hint">
+<font size="-1.5">
+**Hint:** Revisit the previous exercise if you're unsure how to check the class.
+</font>
+</div>
+
+```{r fac-solution}
+state <- factor(state)
+
+class(state)
+
+```
+
+```{r fac-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,49 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Objects part 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r continents, exercise=TRUE, warning=FALSE, message=FALSE}
+
+```
+
+<div id="continents-hint">
+**Hint 1:** The object you want to store should be on the right hand side of the `<-` and the name you want to give your new object should be on the left hand side of the `<-`. Similar to a mathematical equation!
+
+**Hint 2:** At this point, nothing should print out (except whether you got the answer correct or incorrect)
+</div>
+
+```{r continents-solution}
+continents <- 7
+```
+
+```{r continents-check}
+grade_code("Good job!")
+```
+
+<div data-iframe-height></div>
