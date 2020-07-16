@@ -1,0 +1,112 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Indexing"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-sat, warning=FALSE, message=FALSE}
+library(psych)
+sat.act <- sat.act[1:100,]
+age <- sat.act$age
+act <- sat.act$ACT
+satV <- sat.act$SATV
+satQ <- sat.act$SATQ
+rm(sat.act)
+
+satTotal <- satV + satQ
+scaledSat <- satTotal * .0225
+avgTestScores <- (scaledSat + act) / 2
+```
+
+##### 1. Get the first five `satQ` scores, the first five `satV` scores, and the first five `satTotal` scores. Does `satQ + satV = satTotal`?
+This kind of code is great for checking your work! For example, if you find that `satQ + satV` DOES NOT equal `satTotal`, then you would know something is wrong with your code. 
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-sat"}
+
+```
+
+<div id="ex1-hint">
+<font size="-1.5">
+**Hint:** Your answer should have 3 lines of code. Spaces between the lines (empty lines) don't matter.
+</font>
+</div>
+
+```{r ex1-solution}
+satQ[1:5]
+
+satV[1:5]
+
+satTotal[1:5]
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+##### 2. Get the average test scores for the 43rd through 77th individual.
+
+```{r ex2, exercise = TRUE, exercise.setup = "prepare-sat"}
+
+```
+
+<div id="ex2-hint">
+<font size="-1.5">
+**Hint:** You've already created this variable! Look to the section above to find the correct name.
+</font>
+</div>
+
+```{r ex2-solution}
+avgTestScores[43:77]
+```
+
+```{r ex2-check}
+grade_code()
+```
+
+##### 3. Get the ages (`age`) for the following people:
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 37, 38, 39, 40, 41, 42, 43, 44, 45, 66, 77, and 99. **DO NOT TYPE EVERY NUMBER BY HAND**. 
+
+```{r ex3, exercise = TRUE, exercise.setup = "prepare-sat"}
+
+```
+
+<div id="ex3-hint">
+<font size="-1.5">
+**Hint:** You can combine things into a vector using `c()`. 
+</font>
+</div>
+
+```{r ex3-solution}
+age[c(1:16, 37:45, 66, 77, 99)]
+```
+
+```{r ex3-check}
+grade_code()
+```
+
+
