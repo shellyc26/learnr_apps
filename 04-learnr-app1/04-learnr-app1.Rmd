@@ -1,0 +1,79 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Making DFs"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-sat, warning=FALSE, message=FALSE}
+library(psych)
+sat.act <- sat.act[1:100,]
+age <- sat.act$age
+act <- sat.act$ACT
+satV <- sat.act$SATV
+satQ <- sat.act$SATQ
+rm(sat.act)
+
+satTotal <- satV + satQ
+scaledSat <- satTotal * .0225
+avgTestScores <- (scaledSat + act) / 2
+```
+
+<p>Place your answers **ABOVE** the `head(scores)` line of code. The last line just helps to print only the first couple of rows so we're not looking at all 100 scores.</p> 
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-sat"}
+# Your code goes here
+
+
+# Don't delete this line...keep it
+head(scores)
+```
+
+<div id="ex1-hint">
+<font size="-1.5">
+**Hint:** Even if you don't remember the *exact* name of the variable, try typing some of the letters and see what pops up!
+</font>
+</div>
+
+```{r ex1-solution}
+# Your code goes here
+scores <- data.frame(Age = age,
+                     SAT_Verbal = satV,
+                     SAT_Quant = satQ,
+                     SAT_Total = satTotal,
+                     SAT_Scaled = scaledSat,
+                     ACT = act,
+                     Avg_Scores = avgTestScores)
+
+# Don't delete this line...keep it
+head(scores)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>
