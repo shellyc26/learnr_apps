@@ -1,0 +1,209 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "sequences"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+Before we begin, let's remember our `empire` data.frame
+```{r, echo=FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(knitr)
+empire <- starwars
+
+empire <- empire[c(1:5, 10, 13, 14, 19, 21), c(1:3, 8, 10, 11)]
+empire$species <- factor(empire$species)
+
+kable(empire)
+```
+
+```{r, prepare-empire, warning = FALSE, message = FALSE}
+library(dplyr)
+library(knitr)
+empire <- starwars
+
+empire <- empire[c(1:5, 10, 13, 14, 19, 21), c(1:3, 8, 10, 11)]
+empire$species <- factor(empire$species)
+
+```
+
+##### 1. Look up the help documentation for the `scale` and `plot` functions
+```{r q1, exercise=TRUE}
+
+```
+
+##### 2. Using the `height` variable from our `empire` data.frame, make a new variable called `height_z`, using the `scale` function.
+Make this a separate vector -- do NOT append it to the existing `empire` data.frame. Go ahead and print it out. 
+```{r, q2, exercise=TRUE, exercise.setup="prepare-empire"}
+
+```
+
+<div id="q2-hint">
+<font size="-1.5">
+**Hint:** We're naming it `height_z` because we're making z-scores!
+</font>
+</div>
+
+```{r q2-solution}
+height_z <- scale(empire$height)
+height_z
+```
+
+```{r q2-check}
+grade_code()
+```
+
+##### 3. Do the same thing for the `mass` variable, and call your new object `mass_z`. 
+Make this a separate vector -- do NOT append it to the existing `empire` data.frame. Go ahead and print it out. 
+```{r, q3, exercise=TRUE, exercise.setup="prepare-empire"}
+
+```
+
+<div id="q3-hint">
+<font size="-1.5">
+**Hint:** We're naming it `mass_z` because we're making z-scores!
+</font>
+</div>
+
+```{r q3-solution}
+mass_z <- scale(empire$mass)
+mass_z
+```
+
+```{r q3-check}
+grade_code()
+```
+
+
+```{r prepare-empire2, warning = FALSE, message = FALSE}
+library(dplyr)
+library(knitr)
+empire <- starwars
+
+empire <- empire[c(1:5, 10, 13, 14, 19, 21), c(1:3, 8, 10, 11)]
+empire$species <- factor(empire$species)
+
+height_z <- scale(empire$height)
+mass_z <- scale(empire$mass)
+```
+
+##### 4. Make a new `data.frame` that only contains the `height_z` vector and the `mass_z` vector.
+Store this new data.frame as `empire_z`. Print it out.
+```{r q4, exercise=TRUE, exercise.setup="prepare-empire2"}
+
+```
+
+<div id="q4-hint">
+<font size="-1.5">
+**Hint:** Do *not* use the `cbind()` function. Use only functions that are highighted in this particular question.
+</font>
+</div>
+
+```{r q4-solution, exercise.setup="prepare-empire2"}
+empire_z <- data.frame(height_z, mass_z)
+empire_z
+```
+
+```{r q4-check}
+grade_code()
+```
+
+```{r prepare-empire3, warning = FALSE, message = FALSE}
+library(dplyr)
+library(knitr)
+empire <- starwars
+
+empire <- empire[c(1:5, 10, 13, 14, 19, 21), c(1:3, 8, 10, 11)]
+empire$species <- factor(empire$species)
+
+height_z <- scale(empire$height)
+mass_z <- scale(empire$mass)
+
+empire_z <- data.frame(height_z, mass_z)
+```
+
+##### 5. Make a scatter plot of standardized height (x-axis) by standardized mass (y-axis), using the `plot` function.
+Add the following to your plot:
+
+  - Make "Height by Mass" the **title** of the plot
+  - Add a **label** to the **x-axis** that says "Height (z-scores)"
+  - Add a **label** to the **y-axis** that says "Mass (z-scores)"
+
+```{r q5, exercise=TRUE, exercise.setup="prepare-empire3"}
+
+```
+
+<div id="q5-hint">
+<font size="-1.5">
+**Hint 1:** Scroll up to the first part of this question and re-read the help documentation for `plot`
+
+**_Bonus:_** If you're feeling good, try changing `type = "l` to your plot. What happens? Note: if you submit this code it will be graded as incorrect. But go ahead and play around with it (you can resubmit the correct code afterward).
+</font>
+</div>
+
+```{r q5-solution, exercise.setup="prepare-empire3"}
+plot(x = empire_z$height_z, y = empire_z$mass_z, 
+     main = "Height by Mass",
+     xlab = "Height (z-scores)",
+     ylab = "Mass (z-scores)")
+```
+
+```{r q5-check}
+grade_code()
+```
+
+##### 6. Put it all together in a single code chunk so you can see what you did!
+Starting from question 2, re-type or simply copy/paste your code from above. The goal is to see everyting at once. 
+
+The only exception is this time, do not print anything out (for example, after making `empire_z`, you don't need to type it out again to view it). You also don't need to re-print out the help documentation, which is why you can start at step 2. 
+
+```{r q6, exercise=TRUE, exercise.setup="prepare-empire3"}
+
+```
+<div id="q6-hint">
+<font size="-1.5">
+**Hint:** You should have 3 lines of code before you get to the `plot` function.
+</font>
+</div>
+
+```{r q6-solution, exercise.setup="prepare-empire3"}
+height_z <- scale(empire$height)
+mass_z <- scale(empire$mass)
+empire_z <- data.frame(height_z, mass_z)
+
+plot(x = empire_z$height_z, y = empire_z$mass_z, 
+     main = "Height by Mass",
+     xlab = "Height (z-scores)",
+     ylab = "Mass (z-scores)")
+
+```
+
+```{r q6-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

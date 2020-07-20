@@ -1,0 +1,49 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Logical Operators Quiz"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r logops1, echo=FALSE}
+question("The code `demographics$SubjectAge > 18` should return the following:",
+         answer("all TRUE",
+                message = "HINT: greater than or equal to is inclusive"),
+         answer("Elements 1, 3, 4, and 5 are TRUE and element 2 is FALSE", correct = TRUE),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+
+```
+
+```{r logops2, echo=FALSE}
+question("The code `demographics$SmokerTF != TRUE` should return the following:",
+         answer("FALSE, TRUE, TRUE, FALSE, TRUE",
+                correct = TRUE),
+         answer("TRUE, FALSE, FALSE, TRUE, FALSE",
+                message = "Double negatives are hard! Say the logical statement out loud, then try again."),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+
+```
+
+```{r logops3, echo=FALSE}
+question("The code `SubjectID == 'ID4'` should return the following:",
+         answer("It would return an error message because `SubjectID` is part of the `demographics` data.frame, but in the code, there is no mention of `demographics`",
+                correct = TRUE),
+         answer("FALSE, FALSE, FALSE, TRUE, FALSE",
+                message = "Where is `SubjectID`? Try again."),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+
+```
+<div data-iframe-height></div>

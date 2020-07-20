@@ -1,0 +1,86 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "sequences"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+##### 1. Use the `seq()` function to list numbers from `0` to `100`
+The arguments are:
+
+  - `from =` starting value of sequence
+  - `to =` ending value of sequence
+
+You do not need to store this as a new object. 
+
+```{r ex1, exercise = TRUE}
+
+```
+
+<div id="ex1-hint">
+<font size="-1.5">
+**Hint:** How do you separate multiple arguments?
+</font>
+</div>
+
+```{r ex1-solution}
+seq(from = 0, to = 100)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+##### 2. Use the `seq()` function to list numbers from `0` to `100` by intervals of `10`
+The arguments are:
+
+  - `from =` starting value of sequence
+  - `to =` ending value of sequence
+  - `by = ` increment of the sequence
+
+This time, store your sequence as a new object called `numSequence`. Then print it out separately. 
+
+```{r ex2, exercise = TRUE}
+
+```
+
+<div id="ex2-hint">
+<font size="-1.5">
+**Hint:** When you use the argument names, it doesn't matter what order they go in! Although for the purposes of this practice, try to stick to the order given (helps with the checking!)
+</font>
+</div>
+
+```{r ex2-solution}
+numSequence <- seq(from = 0, to = 100, by = 10)
+numSequence
+```
+
+```{r ex2-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

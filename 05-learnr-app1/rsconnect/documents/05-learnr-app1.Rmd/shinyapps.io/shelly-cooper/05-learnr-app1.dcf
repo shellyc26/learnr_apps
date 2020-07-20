@@ -1,0 +1,12 @@
+name: 05-learnr-app1
+title: 05-learnr-app1
+username:
+account: shelly-cooper
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2594089
+bundleId: 3413734
+url: https://shelly-cooper.shinyapps.io/05-learnr-app1/
+when: 1595276037.97538
+asMultiple: FALSE
+asStatic: FALSE
