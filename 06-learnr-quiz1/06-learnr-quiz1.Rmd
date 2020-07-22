@@ -1,0 +1,52 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Functions & Help Quiz"
+---
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r fx1, echo=FALSE}
+question("Every function has a corresponding Help page",
+         answer("True", correct = TRUE),
+         answer("False",
+                message = "HINT: try looking up the help documentation for a random function, like `library()`. Does a help page exist?"),
+         allow_retry = TRUE)
+
+```
+
+```{r fx2, echo=FALSE}
+question("Each argument inside of a function is separated with:",
+         answer("comma (,)",
+                correct = TRUE),
+         answer("semicolon (;)"),
+         answer("space ( )"),
+         answer("period (.)"),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+
+```
+
+```{r fx3, echo=FALSE}
+question("Someone on the internet suggests using a function called `corr.test()` to look at probability values associated with a correlation. You try to look for it's help page, but you can't find it. You have double-checked the spelling, and it's correct. What do you do?",
+         answer("Use Google to find out what package it comes from. Then check your Packages tab to see if you have that package. If you do, you load the package. If you don't, you install it and then load the package.",
+                correct = TRUE),
+         answer("You completely give up on `R` and go back to using SPSS.",
+                message = "Noooooo, don't give up now!"),
+         answer("You keep looking for a different function since you can't find this one.", 
+                message = "You will miss out on a lot of really great and useful functionality if you do this. Be sure to do some basic checks before moving on to something else."),
+         answer("You pick a completely new analysis technique so you don't ever have to deal with it.",
+                message = "Some day, you'll have to face your fears and figure it out..."),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+
+```
+<div data-iframe-height></div>

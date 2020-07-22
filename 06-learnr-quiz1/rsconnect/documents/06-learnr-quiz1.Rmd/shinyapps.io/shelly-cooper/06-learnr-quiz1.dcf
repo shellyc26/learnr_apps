@@ -1,0 +1,12 @@
+name: 06-learnr-quiz1
+title: 06-learnr-quiz1
+username:
+account: shelly-cooper
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2602903
+bundleId: 3423240
+url: https://shelly-cooper.shinyapps.io/06-learnr-quiz1/
+when: 1595452399.59906
+asMultiple: FALSE
+asStatic: FALSE
