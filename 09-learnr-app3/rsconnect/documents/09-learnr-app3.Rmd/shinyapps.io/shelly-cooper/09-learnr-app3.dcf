@@ -1,0 +1,12 @@
+name: 09-learnr-app3
+title: 09-learnr-app3
+username:
+account: shelly-cooper
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2610157
+bundleId: 3433101
+url: https://shelly-cooper.shinyapps.io/09-learnr-app3/
+when: 1595630754.85653
+asMultiple: FALSE
+asStatic: FALSE

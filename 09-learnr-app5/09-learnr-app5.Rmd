@@ -1,0 +1,124 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "anova analysis"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-aovsetup, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+midus <- read.csv("https://elegant-wilson-496cf4.netlify.app/practice/07-practice/data/midus.csv")
+
+midus$sex <- factor(midus$sex)
+midus$heart_self <- factor(midus$heart_self)
+midus$heart_father <- factor(midus$heart_father)
+
+midus <- na.omit(midus)
+
+# code for trichotomizing `age`
+# do not modify this code
+midus$age_category <- cut(x = midus$age,
+                          breaks = c(28, 40, 60, 84),
+                          labels = c("young", "middle", "old"),
+                          include.lowest = TRUE)
+
+# code for getting means of each combination of interest
+# if there are empty quotation marks, you need to fill it in!
+youngYesHeart <- subset(midus, age_category == "young" & heart_self == "Yes")
+youngYesHeartMean <- mean(youngYesHeart$BMI)
+
+youngNoHeart <- subset(midus, age_category == "young" & heart_self == "No")
+youngNoHeartMean <- mean(youngNoHeart$BMI)
+
+middleYesHeart <- subset(midus, age_category == "middle" & heart_self == "Yes")
+middleYesHeartMean <- mean(middleYesHeart$BMI)
+
+middleNoHeart <- subset(midus, age_category == "middle" & heart_self == "No")
+middleNoHeartMean <- mean(middleNoHeart$BMI)
+
+oldYesHeart <- subset(midus, age_category == "old" & heart_self == "Yes")
+oldYesHeartMean <- mean(oldYesHeart$BMI)
+
+oldNoHeart <- subset(midus, age_category == "old" & heart_self == "No")
+oldNoHeartMean <- mean(oldNoHeart$BMI)
+
+# code for turning everything above into it's own data.frame for plotting
+# do not modify this code
+meansData <- data.frame(age_category = c("young", "young", "middle",
+                                         "middle","old", "old"),
+                        heart_self = c("Yes", "No",
+                                       "Yes", "No",
+                                       "Yes", "No"),
+                        meanBMI = c(youngYesHeartMean,
+                                    youngNoHeartMean,
+                                    middleYesHeartMean,
+                                    middleNoHeartMean,
+                                    oldYesHeartMean,
+                                    oldNoHeartMean))
+
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-aovsetup"}
+# code for ANOVA
+# save it as an object called `model1`
+# then, nest `model1` within the `summary()` function
+
+
+# code for bar plot
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+**Hint 1:** The input data.frame for your ANOVA and the input data.frame for your bar plot should be different. 
+</font>
+
+<font size="-1.5">
+**Hint 2:** Look at the corresponding slides for the bar plot. You need to include `position = "dodge"` as an argument in the second layer. It does not need to go within `aes()`. 
+</font>
+
+</div>
+
+
+```{r ex1-solution}
+# code for ANOVA
+# save it as an object called `model1`
+# then, nest `model1` within the `summary()` function
+model1 <- aov(BMI ~ age_category * heart_self, data = midus)
+summary(model1)
+
+# code for bar plot
+# make age category your x-axis, fill by yes/no heart problems
+ggplot(data = meansData, aes(x = age_category, y = meanBMI)) +
+  geom_col(aes(fill = heart_self), position = "dodge")
+```
+
+```{r ex1-check}
+grade_code()
+```
+<div data-iframe-height></div>

@@ -1,0 +1,149 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "anova setup"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-aovsetup, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+midus <- read.csv("https://elegant-wilson-496cf4.netlify.app/practice/07-practice/data/midus.csv")
+
+midus$sex <- factor(midus$sex)
+midus$heart_self <- factor(midus$heart_self)
+midus$heart_father <- factor(midus$heart_father)
+
+midus <- na.omit(midus)
+
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-aovsetup"}
+# code for trichotomizing `age`
+# do not modify this code
+midus$age_category <- cut(x = midus$age,
+                          breaks = c(28, 40, 60, 84),
+                          labels = c("young", "middle", "old"),
+                          include.lowest = TRUE)
+
+# code for getting means of each combination of interest
+# if there are empty quotation marks, you need to fill it in!
+youngYesHeart <- subset(midus, age_category == "young" & heart_self == "Yes")
+youngYesHeartMean <- mean(youngYesHeart$BMI)
+
+youngNoHeart <- subset(midus, age_category == "young" & heart_self == "")
+youngNoHeartMean <- mean(youngNoHeart$BMI)
+
+middleYesHeart <- subset(midus, age_category == "" & heart_self == "Yes")
+middleYesHeartMean <- mean()
+
+middleNoHeart <- subset(midus, age_category == "" & heart_self == "No")
+middleNoHeartMean <- mean()
+
+oldYesHeart <- subset(midus, age_category == "" & heart_self == "")
+oldYesHeartMean <- mean()
+
+oldNoHeart <- subset(midus, age_category == "" & heart_self == "")
+oldNoHeartMean <- mean()
+
+# code for turning everything above into it's own data.frame for plotting
+# do not modify this code
+meansData <- data.frame(age_category = c("young", "young", "middle",
+                                         "middle","old", "old"),
+                        heart_self = c("Yes", "No",
+                                       "Yes", "No",
+                                       "Yes", "No"),
+                        meanBMI = c(youngYesHeartMean,
+                                    youngNoHeartMean,
+                                    middleYesHeartMean,
+                                    middleNoHeartMean,
+                                    oldYesHeartMean,
+                                    oldNoHeartMean))
+
+# view the new `meansData` data.frame you just made
+meansData
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+**Note:** I know this is kind of a pain -- we will go over how to do this in a much simpler way when we talk about `tidyverse`.
+</font>
+</div>
+
+
+```{r ex1-solution}
+# code for trichotomizing `age`
+# do not modify this code
+midus$age_category <- cut(x = midus$age,
+                          breaks = c(28, 40, 60, 84),
+                          labels = c("young", "middle", "old"),
+                          include.lowest = TRUE)
+
+# code for getting means of each combination of interest
+# if there are empty quotation marks, you need to fill it in!
+youngYesHeart <- subset(midus, age_category == "young" & heart_self == "Yes")
+youngYesHeartMean <- mean(youngYesHeart$BMI)
+
+youngNoHeart <- subset(midus, age_category == "young" & heart_self == "No")
+youngNoHeartMean <- mean(youngNoHeart$BMI)
+
+middleYesHeart <- subset(midus, age_category == "middle" & heart_self == "Yes")
+middleYesHeartMean <- mean(middleYesHeart$BMI)
+
+middleNoHeart <- subset(midus, age_category == "middle" & heart_self == "No")
+middleNoHeartMean <- mean(middleNoHeart$BMI)
+
+oldYesHeart <- subset(midus, age_category == "old" & heart_self == "Yes")
+oldYesHeartMean <- mean(oldYesHeart$BMI)
+
+oldNoHeart <- subset(midus, age_category == "old" & heart_self == "No")
+oldNoHeartMean <- mean(oldNoHeart$BMI)
+
+# code for turning everything above into it's own data.frame for plotting
+# do not modify this code
+meansData <- data.frame(age_category = c("young", "young", "middle",
+                                         "middle","old", "old"),
+                        heart_self = c("Yes", "No",
+                                       "Yes", "No",
+                                       "Yes", "No"),
+                        meanBMI = c(youngYesHeartMean,
+                                    youngNoHeartMean,
+                                    middleYesHeartMean,
+                                    middleNoHeartMean,
+                                    oldYesHeartMean,
+                                    oldNoHeartMean))
+
+# view the new `meansData` data.frame you just made
+meansData
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

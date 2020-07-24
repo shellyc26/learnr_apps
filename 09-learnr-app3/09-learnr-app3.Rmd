@@ -1,0 +1,79 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "correlation"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-cor, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+midus <- read.csv("https://elegant-wilson-496cf4.netlify.app/practice/07-practice/data/midus.csv")
+
+midus$sex <- factor(midus$sex)
+midus$heart_self <- factor(midus$heart_self)
+midus$heart_father <- factor(midus$heart_father)
+
+midus <- na.omit(midus)
+
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-cor"}
+# code for correlation (you do NOT need to assign to an object)
+# use the function that produces p-values
+
+
+# code for scatterplot
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+**Hint:** If there is no argument for `data` or something similar, how do you access variables from a data.frame?
+</font>
+
+<font size="-1.5">
+*If you're trying out the BONUS questions, stick to just Running the code -- don't submit it*
+</font>
+</div>
+
+
+```{r ex1-solution}
+# code for correlation (you do NOT need to assign to an object)
+# use the function that produces p-values
+cor.test(midus$age, midus$BMI)
+
+# code for scatterplot
+ggplot(data = midus, aes(x = age, y = BMI)) +
+  geom_point()
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

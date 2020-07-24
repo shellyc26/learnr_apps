@@ -1,0 +1,95 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "regression"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-cor, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+midus <- read.csv("https://elegant-wilson-496cf4.netlify.app/practice/07-practice/data/midus.csv")
+
+midus$sex <- factor(midus$sex)
+midus$heart_self <- factor(midus$heart_self)
+midus$heart_father <- factor(midus$heart_father)
+
+midus <- na.omit(midus)
+
+```
+
+<p> We have already practiced scatter plots with correlations. Plus, plotting multiple regressions can get a little tricky (see slides). So let's focus on the stats for now.</p>
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-cor"}
+# code for: self-reported physical health predicting self-reported mental health
+# assign this model to an object called "reg1"
+# print out `reg1`
+# then, nest `reg1` within the `summary()` function
+
+
+
+# code for: self-reported physical health & self-reported heart problems predicting self-reported mental health -- NO interaction
+# this time, nest your entire regression function within `summary()` (e.g., no need to create a separate regression object)
+
+
+# code for: self-reported physical health & self-reported heart problems predicting self-reported mental health -- WITH interaction
+# again, nest your entire regression function within `summary()` (e.g., no need to create a separate regression object)
+
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+**Hint:** The difference between the no interaction and interaction code should be a single symbol.
+</font>
+
+</div>
+
+
+```{r ex1-solution}
+# code for: self-reported physical health predicting self-reported mental health
+# assign this model to an object called "reg1"
+# print out `reg1`
+# then, nest `reg1` within the `summary()` function
+reg1 <- lm(mental_health_self ~ physical_health_self, data = midus)
+reg1
+summary(reg1)
+
+# code for: self-reported physical health & self-reported heart problems predicting self-reported mental health -- NO interaction
+# this time, nest your entire regression function within `summary()` (e.g., no need to create a separate regression object)
+summary(lm(mental_health_self ~ physical_health_self + heart_self, data = midus))
+
+# code for: self-reported physical health & self-reported heart problems predicting self-reported mental health -- WITH interaction
+# again, nest your entire regression function within `summary()` (e.g., no need to create a separate regression object)
+summary(lm(mental_health_self ~ physical_health_self * heart_self, data = midus))
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>
