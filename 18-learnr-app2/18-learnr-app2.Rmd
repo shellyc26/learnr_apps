@@ -1,0 +1,84 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "datviz2"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-aovsetup, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(RColorBrewer)
+
+midus <- read.csv("https://elegant-wilson-496cf4.netlify.app/practice/07-practice/data/midus.csv")
+
+midus$sex <- factor(midus$sex)
+midus$heart_self <- factor(midus$heart_self)
+midus$heart_father <- factor(midus$heart_father)
+
+midus <- na.omit(midus)
+
+midus$age_category <- cut(x = midus$age,
+                          breaks = c(28, 40, 60, 84),
+                          labels=c("young", "middle", "old"),
+                          include.lowest = TRUE)
+
+session <- c(rep("1", times = 935), rep("2", times = 935))
+midus["session"] <- rep(session, times = 2)
+midus$session <- as.numeric(midus$session)
+midus$session <- factor(midus$session, labels = c("session1", "session2"))
+
+midus$group <- sample(x = c("group1", "group2"), size = 3740,
+                  replace = TRUE)
+midus$group <- factor(midus$group)
+
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-aovsetup"}
+ggplot(data = midus, aes(x = hostility, y = life_satisfaction)) +
+  geom_point(aes(color = age_category)) +
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+**Hint:** Should the variables go on the same side or opposite sides of the tilde (~) ?
+</font>
+</div>
+
+
+```{r ex1-solution}
+ggplot(data = midus, aes(x = hostility, y = life_satisfaction)) +
+  geom_point(aes(color = age_category)) +
+  facet_wrap(~ age_category + group + session, ncol = 3)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

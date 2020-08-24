@@ -1,0 +1,66 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "datviz2"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare-aovsetup, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(RColorBrewer)
+
+midus <- read.csv("https://elegant-wilson-496cf4.netlify.app/practice/07-practice/data/midus.csv")
+
+midus$sex <- factor(midus$sex)
+midus$heart_self <- factor(midus$heart_self)
+midus$heart_father <- factor(midus$heart_father)
+
+midus <- na.omit(midus)
+
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare-aovsetup"}
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+**Hint:** No hint this time because the instruction basically has the answer lol.
+</font>
+</div>
+
+
+```{r ex1-solution}
+display.brewer.all(n = 3, type = "qual", colorblindFriendly = TRUE)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>
