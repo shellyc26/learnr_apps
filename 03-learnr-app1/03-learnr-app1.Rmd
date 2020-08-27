@@ -39,6 +39,29 @@ satQ <- sat.act$SATQ
 rm(sat.act)
 ```
 
+```{r prepare-sat2, warning=FALSE, message=FALSE}
+library(psych)
+sat.act <- sat.act[1:100,]
+age <- sat.act$age
+act <- sat.act$ACT
+satV <- sat.act$SATV
+satQ <- sat.act$SATQ
+rm(sat.act)
+satTotal <- satV + satQ
+```
+
+```{r prepare-sat3, warning=FALSE, message=FALSE}
+library(psych)
+sat.act <- sat.act[1:100,]
+age <- sat.act$age
+act <- sat.act$ACT
+satV <- sat.act$SATV
+satQ <- sat.act$SATQ
+rm(sat.act)
+satTotal <- satV + satQ
+scaledSat <- satTotal * .0225
+```
+
 ##### 1. Create a vector that combines the verbal and quantitative SAT scores to get the students' overall score.
 Call this variable `satTotal`. Store it as a new vector *and* print it out
 
@@ -58,7 +81,7 @@ grade_code()
 ##### 2. Scale the SAT scores so that they are on the same scale as the ACT scores.
 A perfect SAT score is 1600 and a perfect ACT score is 36. So let's use a scaling factor of **.0225** (.0225 x 1600 = 36). Call this new variable `scaledSat` and print it out. 
 
-```{r scale, exercise = TRUE, exercise.setup = "prepare-sat"}
+```{r scale, exercise = TRUE, exercise.setup = "prepare-sat2"}
 
 ```
 
@@ -74,7 +97,7 @@ grade_code()
 ##### 3. Finally, get the average of the scaled SAT and the ACT scores.
 Call it `avgTestScores` and print it out.
 
-```{r avg, exercise = TRUE, exercise.setup = "prepare-sat"}
+```{r avg, exercise = TRUE, exercise.setup = "prepare-sat3"}
 
 ```
 
