@@ -52,6 +52,7 @@ empire$species <- factor(empire$species)
 ```
 
 ##### 1. Look up the help documentation for the `scale` and `plot` functions
+*Use `base::plot` to make sure that the correct help documentation shows up*. But you still need to add something to the beginning of `base::plot` to make the help page appear...
 ```{r q1, exercise=TRUE}
 
 ```
