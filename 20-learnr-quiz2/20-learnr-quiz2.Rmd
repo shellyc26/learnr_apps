@@ -1,0 +1,28 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "For Loops Quiz 2"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE}
+question("What will actually happen when Drew runs this code chunk?",
+         answer("`my_object` will be `NULL`, so nothing will print to the console"),
+         answer("`my_object` will print a single number for every iteration of the loop, instead of printing *after* the full vector is created"),
+         answer("The numbers in `my_object` will be squared with every iteration of the loop, resulting in huge numbers like: `1 4.294967e+09 1.853020e+15 1.844674e+19 2.328306e+22`"),
+         answer("`my_object` will print a single number (`25`), because it will be overwritten each iteration of the loop", correct = TRUE),
+         allow_retry = TRUE,
+         random_answer_order = TRUE)
+```
+
+<div data-iframe-height></div>

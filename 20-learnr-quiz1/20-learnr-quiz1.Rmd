@@ -1,0 +1,27 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "For Loops Quiz 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE}
+question("If you wanted to iterate over the elements of a vector called `hockey_players`, but you *didn't* know how long the vector was, how would you write the top line of your for loop?",
+         answer("`for (i in 1:10) {`"),
+         answer("`for (i in 1:nrow(hockey_players)) {`"),
+         answer("`for (i in 1:ncol(hockey_players)) {`"),
+         answer("`for (i in 1:length(hockey_players)) {`", correct = TRUE),
+         allow_retry = TRUE)
+```
+
+<div data-iframe-height></div>
