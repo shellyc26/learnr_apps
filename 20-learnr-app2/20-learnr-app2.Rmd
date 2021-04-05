@@ -1,0 +1,69 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "anova setup"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+provel_cheese_rating <- c(1, 1, 9, 3, 5, 4, 7, 1, 3, 10)
+
+```
+
+Call the output vector "like_dislike" again. Note, if you see a `X` in the margin of the code editor here, it's ok -- you can still run it. 
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare"}
+# Your code goes below here
+
+# View the outcome (don't modify)
+print(like_dislike)
+```
+
+
+```{r ex1-solution}
+# Initialize like vs. dislike vector
+like_dislike <- c()
+
+for(i in provel_cheese_rating) {
+  if (i <= 3) {
+    like_dislike <- append(like_dislike, "dislike")
+  } else if (i > 3 & i <= 6) {
+    like_dislike <- append(like_dislike, "neutral") 
+  } else {
+    like_dislike <- append(like_dislike, "like")
+  }
+} 
+
+# View outcome 
+print(like_dislike)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

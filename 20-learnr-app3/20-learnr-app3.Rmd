@@ -1,0 +1,131 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "anova setup"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+set.seed(1234)
+pop_data <- rnorm(n = 10000, mean = 100, sd = 25)
+pop_data <- as.data.frame(pop_data)
+
+library(ggplot2)
+```
+
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare"}
+# Initialize
+upper_values <- c()
+lower_values <- c()
+
+# Begin loop
+for (i in 1:100) {
+  
+  # Draw your sample
+  subsample <- sample(x = pop_data$pop_data, size = 50)
+  
+  # Calculate the confidence interval
+
+  
+  # Save (append) the upper and lower values to the initialized vectors
+  
+
+  
+}
+
+## DO NOT MODIFY THE CODE BELOW! ##
+# If your code works, then the code below should work and you will see the distributions of your bootstrapped confidence intervals below.
+
+values <- append(upper_values, lower_values)
+type <- c(rep("upper", 100), rep("lower", 100))
+quickPlotData <- data.frame(values, type)
+upper_m <- mean(upper_values)
+lower_m <- mean(lower_values)
+
+ggplot() +
+  geom_histogram(data = quickPlotData, aes(x = values, fill = type),
+                 binwidth = 1) +
+  theme_classic() +
+  xlab("Confidence intervals") +
+  ylab("Count") +
+  geom_vline(xintercept = upper_m) +
+  geom_vline(xintercept = lower_m) +
+  ggtitle("Bootstrapped Confidence Intervals")
+```
+
+
+```{r ex1-solution}
+
+# Initialize
+upper_values <- c()
+lower_values <- c()
+
+# Begin loop
+
+for (i in 1:100) {
+  
+  # Draw your sample
+  subsample <- sample(x = pop_data$pop_data, size = 50)
+  
+  # Calculate the confidence interval
+  avg <- mean(subsample)
+  sem <- sd(subsample)/length(subsample)
+  
+  uv <- avg + 1.96 * (sem)
+  lv <- avg - 1.96 * (sem)
+  
+  # Save (append) the upper and lower values to the initialized vectors
+  
+  upper_values <- append(upper_values, uv)
+  lower_values <- append(lower_values, lv)
+  
+}
+
+
+
+values <- append(upper_values, lower_values)
+type <- c(rep("upper", 100), rep("lower", 100))
+quickPlotData <- data.frame(values, type)
+upper_m <- mean(upper_values)
+lower_m <- mean(lower_values)
+
+ggplot() +
+  geom_histogram(data = quickPlotData, aes(x = values, fill = type), binwidth = 1) +
+  theme_classic() +
+  xlab("Confidence intervals") +
+  ylab("Count") +
+  geom_vline(xintercept = upper_m) +
+  geom_vline(xintercept = lower_m) +
+  ggtitle("Bootstrapped Confidence Intervals")
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,127 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "anova setup"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+library(tidyverse)
+names_of_dataframes <- dir(path = "/Users/Coop/Psych4175/content/practice/Practice_Data/", full.names = TRUE, pattern = '.csv', ignore.case = TRUE)
+
+list_of_dataframes <- list() # initialize
+
+for (i in 1:length(names_of_dataframes)) {
+  list_of_dataframes[[i]] <- read.csv(names_of_dataframes[i], header = TRUE)
+}
+
+```
+
+Drew has 20 different spreadsheets from her research project, one per subject. All of the spreadsheets are the same format, and look like this:
+
+```{r prep1, warning=FALSE, message=FALSE}
+names_of_dataframes <- dir(path = "/Users/Coop/Psych4175/content/practice/Practice_Data/", full.names = TRUE, pattern = '.csv', ignore.case = TRUE)
+
+list_of_dataframes <- list() # initialize
+
+for (i in 1:length(names_of_dataframes)) {
+  list_of_dataframes[[i]] <- read.csv(names_of_dataframes[i], header = TRUE)
+}
+
+head(list_of_dataframes[[1]])
+```
+
+Drew has already loaded all of the spreadsheets in R, and saved them to a list called `list_of_dataframes`. Each subject's spreadsheet can be indexed like so `list_of_dataframes[[1]]` which produces this output:
+
+```{r prep2, warning=FALSE, message=FALSE}
+names_of_dataframes <- dir(path = "../Practice_Data/", full.names = TRUE, pattern = '.csv', ignore.case = TRUE)
+
+list_of_dataframes <- list() # initialize
+
+for (i in 1:length(names_of_dataframes)) {
+  list_of_dataframes[[i]] <- read.csv(names_of_dataframes[i], header = TRUE)
+}
+
+# Indexing Subject 1's dataframe:
+list_of_dataframes[[1]]
+```
+
+**How can Drew use a for loop to combine these files into one large dataframe?**
+
+Key things to keep in mind:
+
+- There are 20 subjects. Each subject can be indexed like Subjects 1 (example above)
+- The columns of all the dataframes are exactly the same
+- HINT: Look at the help page for `rbind()`
+
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare"}
+# Replace instances of `XXX` in the skeleton code below and then check your # result.
+
+# For each individual data.frame, call it `i_dataframe`.
+# For the final combined data.frame, call it `combined_dataframe`. 
+
+XXX <- NULL
+
+for (i in 1:20) {
+  XXX <- list_of_dataframes[[XXX]]
+  combined_dataframe <- rbind(XXX, XXX)
+}
+
+# After you do this, we're going to arrange this by subject number
+# Then, print it out so we can see. You do NOT need to modify this code
+combined_dataframe <- combined_dataframe %>% 
+  arrange(subject)
+combined_dataframe
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+The goal is to get each individual data.frame and rather than keep it as a separate thing, you want the output to be a single large data.frame, where each individual is appended underneath the next. 
+</font>
+</div>
+
+
+```{r ex1-solution}
+combined_dataframe <- NULL
+
+for (i in 1:20) {
+  i_dataframe <- list_of_dataframes[[i]]
+  combined_dataframe <- rbind(combined_dataframe, i_dataframe)
+}
+
+combined_dataframe <- combined_dataframe %>% 
+  arrange(subject)
+combined_dataframe
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

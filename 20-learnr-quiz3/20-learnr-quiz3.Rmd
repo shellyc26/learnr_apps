@@ -1,0 +1,28 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "For Loops Quiz 3"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE}
+question("What is a 95% confidence interval?",
+         answer("The interval within which we are 95% certain the population mean will fall"),
+         answer("The interval within which we are 95% certain the sample mean will fall"),
+         answer("If we carried out random sampling from the population a large number of times, and calculated the 95% confidence interval each time, then 95% of those intervals can be expected to contain the population mean", correct = TRUE),
+         answer("If we carried out random sampling from the population a large number of times, and calculated the 95% confidence interval each time, then 95% of those intervals can be expected to contain the sample mean"),
+         allow_retry = TRUE,
+         random_answer_order = TRUE)
+```
+
+<div data-iframe-height></div>
