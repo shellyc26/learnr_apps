@@ -4,7 +4,7 @@ output:
     includes:
       in_header: test1.html
 runtime: shiny_prerendered
-description: "anova setup"
+description: "practice app 1"
 ---
 
 ```{r setup, include=FALSE}
@@ -131,8 +131,6 @@ for (i in 1:20) {
   combined_dataframe <- rbind(combined_dataframe, i_dataframe)
 }
 
-combined_dataframe <- combined_dataframe %>% 
-  arrange(subject)
 combined_dataframe
 ```
 

@@ -32,7 +32,7 @@ h5 {
 ```{r prepare, warning=FALSE, message=FALSE}
 set.seed(1234)
 pop_data <- rnorm(n = 10000, mean = 100, sd = 25)
-pop_data <- as.data.frame(pop_data)
+pop_data <- data.frame(PopulationMeans = pop_data)
 
 library(ggplot2)
 ```
@@ -47,7 +47,7 @@ lower_values <- c()
 for (i in 1:100) {
   
   # Draw your sample
-  subsample <- sample(x = pop_data$pop_data, size = 50)
+  subsample <- sample(x = pop_data$PopulationMeans, size = 50)
   
   # Calculate the confidence interval
 
@@ -90,14 +90,14 @@ lower_values <- c()
 for (i in 1:100) {
   
   # Draw your sample
-  subsample <- sample(x = pop_data$pop_data, size = 50)
+  subsample <- sample(x = pop_data$PopulationMeans, size = 50)
   
   # Calculate the confidence interval
   avg <- mean(subsample)
   sem <- sd(subsample)/length(subsample)
   
-  uv <- avg + 1.96 * (sem)
-  lv <- avg - 1.96 * (sem)
+  uv <- avg + (1.96 * sem)
+  lv <- avg - (1.96 * sem)
   
   # Save (append) the upper and lower values to the initialized vectors
   
