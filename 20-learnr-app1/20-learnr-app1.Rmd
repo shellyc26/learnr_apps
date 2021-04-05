@@ -30,43 +30,62 @@ h5 {
 ```
 
 ```{r prepare, warning=FALSE, message=FALSE}
-library(tidyverse)
-names_of_dataframes <- dir(path = "/Users/Coop/Psych4175/content/practice/Practice_Data/", full.names = TRUE, pattern = '.csv', ignore.case = TRUE)
 
-list_of_dataframes <- list() # initialize
+# need to read in files "by hand"
 
-for (i in 1:length(names_of_dataframes)) {
-  list_of_dataframes[[i]] <- read.csv(names_of_dataframes[i], header = TRUE)
-}
+list_of_dataframes <- list(
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject1.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject2.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject3.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject4.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject5.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject6.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject7.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject8.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject9.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject10.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject11.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject12.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject13.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject14.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject15.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject16.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject17.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject18.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject19.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject20.csv")
+) # initialize
+
 
 ```
 
-Drew has 20 different spreadsheets from her research project, one per subject. All of the spreadsheets are the same format, and look like this:
+Drew has 20 different spreadsheets from her research project, one per subject. All of the spreadsheets are the same format. Drew has already loaded all of the spreadsheets in R, and saved them to a list called `list_of_dataframes`. Each subject's spreadsheet can be indexed like so `list_of_dataframes[[1]]` which produces this output:
 
 ```{r prep1, warning=FALSE, message=FALSE}
-names_of_dataframes <- dir(path = "/Users/Coop/Psych4175/content/practice/Practice_Data/", full.names = TRUE, pattern = '.csv', ignore.case = TRUE)
 
-list_of_dataframes <- list() # initialize
+list_of_dataframes <- list(
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject1.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject2.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject3.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject4.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject5.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject6.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject7.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject8.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject9.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject10.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject11.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject12.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject13.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject14.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject15.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject16.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject17.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject18.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject19.csv"),
+  read.csv("https://relaxed-swirles-04c8f0.netlify.app/practice/20-practice_files/data/subject20.csv")
+) # initialize
 
-for (i in 1:length(names_of_dataframes)) {
-  list_of_dataframes[[i]] <- read.csv(names_of_dataframes[i], header = TRUE)
-}
-
-head(list_of_dataframes[[1]])
-```
-
-Drew has already loaded all of the spreadsheets in R, and saved them to a list called `list_of_dataframes`. Each subject's spreadsheet can be indexed like so `list_of_dataframes[[1]]` which produces this output:
-
-```{r prep2, warning=FALSE, message=FALSE}
-names_of_dataframes <- dir(path = "../Practice_Data/", full.names = TRUE, pattern = '.csv', ignore.case = TRUE)
-
-list_of_dataframes <- list() # initialize
-
-for (i in 1:length(names_of_dataframes)) {
-  list_of_dataframes[[i]] <- read.csv(names_of_dataframes[i], header = TRUE)
-}
-
-# Indexing Subject 1's dataframe:
 list_of_dataframes[[1]]
 ```
 
@@ -92,10 +111,7 @@ for (i in 1:20) {
   combined_dataframe <- rbind(XXX, XXX)
 }
 
-# After you do this, we're going to arrange this by subject number
-# Then, print it out so we can see. You do NOT need to modify this code
-combined_dataframe <- combined_dataframe %>% 
-  arrange(subject)
+# Print it out so we can see!
 combined_dataframe
 ```
 
