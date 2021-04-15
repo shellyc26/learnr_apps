@@ -1,0 +1,123 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 2"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+
+iris = iris
+
+z_score = function(values){
+  return((values-mean(values)) / sd(values))
+}
+
+
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare"}
+# I'm going to help you initialize an empty data.frame
+# This first line creates `iris_zscored`. it is a dataframe filled with
+# NA values, and has the exact same dimensions as iris (same rows and cols)
+# Do not change this code!
+
+iris_zscored <- data.frame(matrix(NA, nrow = nrow(iris), ncol = ncol(iris)))
+
+# Write your for loop here:
+
+
+
+# Last, I'm going to assign the names of the columns of our new dataframe to be
+# the same as the original. Do not change this code!
+
+colnames(iris_zscored) <- colnames(iris)
+
+# View the new z-scored data frame and 
+# check out a summary of it dataset -- is the data z-scored?  
+# Do not change the code below
+head(iris_zscored)
+summary(iris_zscored)
+
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+Hint 1: You are writing a for loop -- NOT a function! You're simply using the `z_score` function that you created inside of your for loop. So no return statement is necessary!
+</font>
+
+<font size="-1.5">
+Hint 2: If `nrow()` tells you the number of rows, how do you think you get the number of columns? 
+</font>
+
+<font size="-1.5">
+Hint 3: Think back to how we indexed things! When you have a 1-d object, it was something like `object[8]` to get the 8th element in the `object`. When it's a 2-d object, you need to specify rows and column. `object[6,4]` gives you the 6th row and the 4th column. If you want all of the rows or columns, you leave it blank. `object[7,]` gives you the 7th row and all of the columns.
+</font>
+
+</div>
+
+```{r ex1-solution, warning = FALSE, message = FALSE}
+# I'm going to help you initialize an empty data.frame
+# This first line creates `iris_zscored`. it is a dataframe filled with
+# NA values, and has the exact same dimensions as iris (same rows and cols)
+# Do not change this code!
+
+iris_zscored <- data.frame(matrix(NA, nrow = nrow(iris), ncol = ncol(iris)))
+
+# Write your for loop here:
+
+for(i in 1:ncol(iris)){
+  
+  if(is.numeric(iris[,i]) == TRUE) {
+    z = z_score(values = iris[,i])
+    iris_zscored[,i] <- z
+  }
+  
+  else{
+    iris_zscored[,i] <- iris[,i]
+  }
+}
+
+# Last, I'm going to assign the names of the columns of our new dataframe to be
+# the same as the original. Do not change this code!
+
+colnames(iris_zscored) <- colnames(iris)
+
+# View the new z-scored data frame and 
+# check out a summary of it dataset -- is the data z-scored?  
+# Do not change the code below
+head(iris_zscored)
+summary(iris_zscored)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

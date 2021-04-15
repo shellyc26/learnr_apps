@@ -1,0 +1,132 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+
+library(ggplot2)
+library(ggpubr)
+# make study data so they can practice with it
+
+subject <- 1:50
+set.seed(1234)
+score <- rnorm(n = 50, mean = 75, sd = 2)
+studyData <- data.frame(subject, score)
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
+# Create your function here
+
+
+
+
+
+# Now add a new column to `studyData` called "z_score" where you run your
+# new functions
+
+
+
+
+# Let's look at the data before and after z-scoring - does your function work?
+# You do not need to modify the code below, but you 100% should understand what
+# is happening
+
+plot1 <- ggplot(studyData, aes(x = score)) +
+  geom_histogram(color = "black", fill = "plum4") +
+  theme_classic() +
+  ylim(c(0,6)) +
+  ylab("Count") +
+  xlab("Value") +
+  ggtitle("Raw data")
+
+plot2 <- ggplot(studyData, aes(x = z_score)) +
+  geom_histogram(color = "black", fill = "plum4") +
+  theme_classic() +
+  ylim(c(0,6)) +
+  ylab("Count") +
+  xlab("Value") +
+  ggtitle("Z-scored data")
+
+ggarrange(plot1, plot2)
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+$z = \frac{x_i - \bar{x}}{s}$
+</font>
+</div>
+
+
+```{r ex1-solution, warning = FALSE, message = FALSE}
+# Create your function here
+z_score <- function(values) {
+  return((values - mean(values)) / sd(values))
+}
+
+
+
+
+# Now add a new column to `studyData` called "z_score" where you run your
+# new functions
+studyData$z_score <- z_score(values = studyData$score)
+
+
+
+# Let's look at the data before and after z-scoring - does your function work?
+# You do not need to modify the code below, but you 100% should understand what
+# is happening
+
+plot1 <- ggplot(studyData, aes(x = score)) +
+  geom_histogram(color = "black", fill = "plum4") +
+  theme_classic() +
+  ylim(c(0,6)) +
+  ylab("Count") +
+  xlab("Value") +
+  ggtitle("Raw data")
+
+plot2 <- ggplot(studyData, aes(x = z_score)) +
+  geom_histogram(color = "black", fill = "plum4") +
+  theme_classic() +
+  ylim(c(0,6)) +
+  ylab("Count") +
+  xlab("Value") +
+  ggtitle("Z-scored data")
+
+ggarrange(plot1, plot2)
+
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

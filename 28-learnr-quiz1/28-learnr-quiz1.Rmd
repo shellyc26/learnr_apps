@@ -1,0 +1,27 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Functions Quiz 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE}
+question("When writing functions, why should you use `return()` as the last step instead of `print()`?",
+         answer("`print()` *only* writes (prints) its output to the console, which means that the outcome of the overall function cannot be assigned to an object whereas `return()` provides an output/return value from a function which *can* be assigned to an object", correct = TRUE),
+         answer("`return()` has to be included in a function in order for it to work (otherwise, it will error)"),
+         answer("Trick question! There is no difference between `return()` and `print()`"),
+         allow_retry = TRUE,
+         random_answer_order = TRUE)
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,50 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+
+library(ggplot2)
+library(ggpubr)
+# make study data so they can practice with it
+
+subject <- 1:50
+set.seed(1234)
+score <- rnorm(n = 50, mean = 75, sd = 2)
+studyData <- data.frame(subject, score)
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
+# Make a new theme and then plot your studyData using that theme
+
+```
+
+
+<div data-iframe-height></div>
