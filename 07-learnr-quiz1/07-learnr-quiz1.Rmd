@@ -1,0 +1,28 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "Loading Files Quiz 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE}
+question("Based on the file structure above, how would ou modify the code to read in the data set from source 3?",
+         answer("`data <- read.csv(here('data/data from source 3.csv'))`", correct = TRUE),
+         answer("`data <- read.csv('data/data from source 3.csv')`"),
+         answer("`data <- read.csv(here('Project Name/data from source 3.csv'))`"),
+         answer("`data <- read.csv(here('data/Project Name/data from source 3.csv'))`"),
+         allow_retry = TRUE,
+         random_answer_order = TRUE)
+```
+
+<div data-iframe-height></div>
