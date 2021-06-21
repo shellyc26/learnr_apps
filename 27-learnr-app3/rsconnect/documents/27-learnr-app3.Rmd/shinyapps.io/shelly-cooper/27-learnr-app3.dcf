@@ -5,8 +5,9 @@ account: shelly-cooper
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3912708
-bundleId: 4434496
+bundleId: 4740441
 url: https://shelly-cooper.shinyapps.io/27-learnr-app3/
-when: 1617650141.53451
+when: 1624301089.94568
+lastSyncTime: 1624301089.9457
 asMultiple: FALSE
 asStatic: FALSE

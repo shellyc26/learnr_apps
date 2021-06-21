@@ -4,7 +4,7 @@ output:
     includes:
       in_header: test1.html
 runtime: shiny_prerendered
-description: "anova setup"
+description: "bootstrapped ci"
 ---
 
 ```{r setup, include=FALSE}
@@ -34,93 +34,81 @@ set.seed(1234)
 pop_data <- rnorm(n = 10000, mean = 100, sd = 25)
 pop_data <- data.frame(PopulationMeans = pop_data)
 
+sample_data <- data.frame(SampleMeans = sample(pop_data$PopulationMeans, size = 30, replace = FALSE))
+
 library(ggplot2)
 ```
 
 
 ```{r ex1, exercise = TRUE, exercise.setup = "prepare"}
-# Initialize
-upper_values <- c()
-lower_values <- c()
+# Initialize empty vector of diff in means
+diffMeans <- NULL
+
 
 # Begin loop
 for (i in 1:100) {
   
-  # Draw your sample
-  subsample <- sample(x = pop_data$PopulationMeans, size = 50)
-  
-  # Calculate the confidence interval
+  # Draw your sample, get the mean, and get the difference between the mean and 95
 
   
-  # Save (append) the upper and lower values to the initialized vectors
+  # Save (append) the result to `diffMeans`
   
-
   
 }
 
-## DO NOT MODIFY THE CODE BELOW! ##
-# If your code works, then the code below should work and you will see the distributions of your bootstrapped confidence intervals below.
 
-values <- append(upper_values, lower_values)
-type <- c(rep("upper", 100), rep("lower", 100))
-quickPlotData <- data.frame(values, type)
-upper_m <- mean(upper_values)
-lower_m <- mean(lower_values)
+
+## DO NOT MODIFY THE CODE BELOW! ##
+# If your code works, then the code below should work and you will see the distributions of your diff in means and their confidence intervals.
+# NOTE THE `geom_vline` lines of code!
+
+differences <- data.frame(diffMeans)
 
 ggplot() +
-  geom_histogram(data = quickPlotData, aes(x = values, fill = type),
-                 binwidth = 1) +
+  geom_histogram(data = differences, aes(x = diffMeans), binwidth = 1) +
   theme_classic() +
-  xlab("Confidence intervals") +
+  xlab("Differences in Means") +
   ylab("Count") +
-  geom_vline(xintercept = upper_m) +
-  geom_vline(xintercept = lower_m) +
+  geom_vline(aes(xintercept = quantile(diffMeans, probs = .025), color = "Lower 2.5%"), size = 2) +
+  geom_vline(aes(xintercept = quantile(diffMeans, probs = .975), color = "Upper 2.5%"), size = 2) +
   ggtitle("Bootstrapped Confidence Intervals")
 ```
 
 
 ```{r ex1-solution}
 
-# Initialize
-upper_values <- c()
-lower_values <- c()
+# Initialize empty vector of diff in means
+diffMeans <- NULL
+
 
 # Begin loop
-
 for (i in 1:100) {
   
-  # Draw your sample
-  subsample <- sample(x = pop_data$PopulationMeans, size = 50)
+  # Draw your sample, get the mean, and get the difference between the mean and 95
+  indices <- sample(1:30, size = 30, replace = T)
+  subsample <- sample_data[indices, 1]
+  meanSample <- mean(subsample)
+  diff <- meanSample - 95
   
-  # Calculate the confidence interval
-  avg <- mean(subsample)
-  sem <- sd(subsample)/length(subsample)
-  
-  uv <- avg + (1.96 * sem)
-  lv <- avg - (1.96 * sem)
-  
-  # Save (append) the upper and lower values to the initialized vectors
-  
-  upper_values <- append(upper_values, uv)
-  lower_values <- append(lower_values, lv)
+  # Save (append) the result to `diffMeans`
+  diffMeans <- append(diffMeans, diff)
   
 }
 
 
 
-values <- append(upper_values, lower_values)
-type <- c(rep("upper", 100), rep("lower", 100))
-quickPlotData <- data.frame(values, type)
-upper_m <- mean(upper_values)
-lower_m <- mean(lower_values)
+## DO NOT MODIFY THE CODE BELOW! ##
+# If your code works, then the code below should work and you will see the distributions of your diff in means and their confidence intervals.
+# NOTE THE `geom_vline` lines of code!
 
+differences <- data.frame(diffMeans)
 ggplot() +
-  geom_histogram(data = quickPlotData, aes(x = values, fill = type), binwidth = 1) +
+  geom_histogram(data = differences, aes(x = diffMeans), binwidth = 1) +
   theme_classic() +
-  xlab("Confidence intervals") +
+  xlab("Differences in Means") +
   ylab("Count") +
-  geom_vline(xintercept = upper_m) +
-  geom_vline(xintercept = lower_m) +
+  geom_vline(aes(xintercept = quantile(diffMeans, probs = .025), color = "Lower 2.5%"), size = 2) +
+  geom_vline(aes(xintercept = quantile(diffMeans, probs = .975), color = "Upper 2.5%"), size = 2) +
   ggtitle("Bootstrapped Confidence Intervals")
 ```
 
