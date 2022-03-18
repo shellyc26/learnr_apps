@@ -1,0 +1,77 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+
+library(dplyr)
+df<-carData::Ginzberg
+df$simplicity[c(1,5,3,74)]<-NA
+df$fatalism[c(1,5,7,8)]<-NA
+df$depression[c(2,5,7,75)]<-NA
+
+df$grouping = rep(c("Group1", "Group2"), times = 41)
+df$grouping = factor(df$grouping) 
+  
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
+# assume that tidyverse is loaded
+# assume that your data are already imported and called `df`
+# assume the categorical variable is called `grouping`
+
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+Think back to how we made bar graphs for different levels of a categorical variable...
+</font>
+</div>
+
+
+```{r ex1-solution, warning = FALSE, message = FALSE}
+# assume that tidyverse is loaded
+# assume that your data are already imported and called `df`
+# assume the categorical variable is called `grouping`
+
+df %>%
+  group_by(grouping) %>%
+  summarize(COR1=cor(fatalism,depression,use="complete.obs"),
+            COR2=cor(depression,simplicity,use="complete.obs"))
+
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>
