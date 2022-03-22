@@ -1,0 +1,111 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 2"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+library(palmerpenguins)
+library(broom)
+library(knitr)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+mod1 <- lm(body_mass_g ~ bill_length_mm, data = penguins)
+```
+
+How do we change the summary output from a long list into a data.frame? call it `mod1.pretty`.
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare"}
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+Use the tidyverse version
+</font>
+</div>
+
+
+```{r ex1-solution}
+mod1.pretty <- tidy(mod1)
+kable(mod1.predicted)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+How do we make a data.frame that has important information like predicted values, outlier metrics etc.?
+
+Be sure to store it as an object called `mod1.predicted` and use the `kable` function to make it a pretty output. Also, only show the first few rows. 
+
+```{r ex2, exercise = TRUE, exercise.setup = "prepare"}
+
+```
+
+<div id="ex2-hint">
+
+<font size="-1.5">
+Use the tidyverse version
+</font>
+</div>
+
+
+```{r ex2-solution}
+mod1.predicted <- augment(mod1)
+kable(head(mod1.predicted))
+```
+
+```{r ex2-check}
+grade_code()
+```
+
+How do we make a data.frame that has fit statistics?
+
+Be sure to store it as an object called `mod1.fit` and use the `kable` function to make it a pretty output.
+
+```{r ex3, exercise = TRUE, exercise.setup = "prepare"}
+
+```
+
+<div id="ex3-hint">
+
+<font size="-1.5">
+Use the tidyverse version
+</font>
+</div>
+
+
+```{r ex3-solution}
+mod1.fit <- glance(mod1)
+kable(mod1.fit)
+```
+
+```{r ex3-check}
+grade_code()
+```
+<div data-iframe-height></div>
