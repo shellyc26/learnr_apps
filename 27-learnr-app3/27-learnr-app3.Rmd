@@ -7,6 +7,10 @@ runtime: shiny_prerendered
 description: "bootstrapped ci"
 ---
 
+
+
+
+
 ```{r setup, include=FALSE}
 library(learnr)
 library(gradethis)
@@ -28,6 +32,28 @@ h5 {
 }
 
 ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 ```{r prepare, warning=FALSE, message=FALSE}
 set.seed(1234)
