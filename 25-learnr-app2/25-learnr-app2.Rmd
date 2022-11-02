@@ -52,7 +52,7 @@ Use the tidyverse version
 
 ```{r ex1-solution}
 mod1.pretty <- tidy(mod1)
-kable(mod1.predicted)
+kable(mod1.pretty)
 ```
 
 ```{r ex1-check}
