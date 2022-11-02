@@ -1,0 +1,65 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 5"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+library(palmerpenguins)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+
+iris<-datasets::iris
+mod_width<-lm(Sepal.Width~Sepal.Length*Petal.Length, data=iris)
+library(sjPlot)
+library(reghelper)
+  
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
+# Your code goes here
+
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+How do you combine numbers together?
+</font>
+</div>
+
+
+```{r ex1-solution}
+# Your code goes here
+simple_slopes(mod_width, levels = list(Petal.Length = c(4,6)))
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

@@ -1,0 +1,28 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "interactions quiz 1"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r script-console, echo=FALSE, warning=FALSE, message=FALSE}
+question("What do higher-order interaction terms represent:?",
+         answer("the change in the slope of X as a function of Z"),
+         answer("the degree of curvature in the regression plane"),
+         answer("the linear effect of the product of independent variables"),
+         answer("all of these are true", correct = TRUE),
+         random_answer_order = TRUE,
+         allow_retry = TRUE)
+```
+
+<div data-iframe-height></div>

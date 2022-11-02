@@ -1,0 +1,94 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: test1.html
+runtime: shiny_prerendered
+description: "practice app 4"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.eval = FALSE)
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+library(palmerpenguins)
+
+```
+
+```{css, echo=FALSE}
+p {
+  font-size: 16.5px;
+  font-family: "Merriweather", sans-serif;
+}
+
+h5 {
+  font-size: 16.5px;
+  font-family: "Lato", sans-serif;
+}
+
+```
+
+```{r prepare, warning=FALSE, message=FALSE}
+
+iris<-datasets::iris
+mod_width<-lm(Sepal.Width~Sepal.Length*Petal.Length, data=iris)
+library(sjPlot)
+  
+```
+
+```{r ex1, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
+# Your code goes here
+
+
+```
+
+<div id="ex1-hint">
+
+<font size="-1.5">
+$Y \sim X$ 
+</font>
+</div>
+
+
+```{r ex1-solution}
+# Your code goes here
+mod_width<-lm(Sepal.Width~Sepal.Length*Petal.Length, data=iris)
+
+plot_model(mod_width, type = "int")
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+
+Now, let's visualize `mod_width` when Petal Length is 4 and 6 (keep using the `sjPlot` package)
+
+```{r ex2, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
+# Your code goes here
+
+
+
+```
+
+<div id="ex2-hint">
+
+<font size="-1.5">
+$Y \sim X$ 
+</font>
+</div>
+
+
+```{r ex2-solution}
+# Your code goes here
+plot_model(mod_width, type = "pred", terms = c("Sepal.Length","Petal.Length[4,6]"))
+
+```
+
+```{r ex2-check}
+grade_code()
+```
+
+<div data-iframe-height></div>

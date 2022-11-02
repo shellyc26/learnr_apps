@@ -1,0 +1,13 @@
+name: 30-learnr-app2
+title: 30-learnr-app2
+username:
+account: shelly-cooper
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7505106
+bundleId: 6469201
+url: https://shelly-cooper.shinyapps.io/30-learnr-app2/
+when: 1667427976.03867
+lastSyncTime: 1667427976.03869
+asMultiple: FALSE
+asStatic: FALSE
