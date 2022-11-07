@@ -37,6 +37,7 @@ mod_width<-lm(Sepal.Width~Sepal.Length*Petal.Length, data=iris)
 
 
 library(ggeffects)
+library(ggplot2)
   
 ```
 
@@ -45,14 +46,6 @@ library(ggeffects)
 
 
 ```
-
-<div id="ex1-hint">
-
-<font size="-1.5">
-How do you combine characters together?
-</font>
-</div>
-
 
 ```{r ex1-solution}
 # Your code goes here
