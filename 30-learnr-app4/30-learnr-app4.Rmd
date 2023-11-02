@@ -13,7 +13,7 @@ library(gradethis)
 knitr::opts_chunk$set(echo = FALSE)
 tutorial_options(exercise.eval = FALSE)
 knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
-library(palmerpenguins)
+#library(palmerpenguins)
 
 ```
 
@@ -38,6 +38,7 @@ library(sjPlot)
   
 ```
 
+In the box below, define the model, print out the regression table, and finally visualize this model where the terms are each of the predictors.
 ```{r ex1, exercise = TRUE, exercise.setup = "prepare", warning = FALSE, message = FALSE}
 # Your code goes here
 
@@ -55,8 +56,8 @@ $Y \sim X$
 ```{r ex1-solution}
 # Your code goes here
 mod_width<-lm(Sepal.Width~Sepal.Length*Petal.Length, data=iris)
-
-plot_model(mod_width, type = "int")
+summary(mod_width)
+plot_model(mod_width, type = "pred", terms = c("Sepal.Length", "Petal.Length"))
 ```
 
 ```{r ex1-check}
